@@ -10,25 +10,25 @@
           />    
           <van-tabs v-model:active="activeTab" color="var(--primary-color)">
             <template v-for="(value, key, index) in allCities" :key="key">
-                <van-tab :title="value.title"></van-tab>
+                <van-tab :title="value.title" :name="key"></van-tab>
             </template>
            </van-tabs>
         </div>
-
-
         <div class="content">
-            <template v-for="item in 100">
-                <h2>{{ item }}</h2>
+            <city-group :groupData="currentGroup"/>
+            <template v-for="(value, key, index) in allCities">
+                <city-group v-show=" activeTab === key " :groupData="currentGroup"/>
             </template>
         </div>
     </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import useCityStore  from '@/stores/modules/city'
 import { storeToRefs } from 'pinia'
+import cityGroup from './cpns/city-group.vue'
 
 const router = useRouter()
 
@@ -45,19 +45,17 @@ const cityStore = useCityStore()
 cityStore.fetchALLCitiesData()
 const { allCities } = storeToRefs(cityStore)
 
-/*
-这个位置发送网络请求有两个缺点
-1.如果网络请求太多，那么页面组件就包含大量的对于网络请求和数据的处理逻辑
-2，如果页面封装了很多子组件，子组件需要这些数据，我们必须一步步将数据传递过去（props）
-*/
-// getCityAll().then(res => {
-//     console.log(res)
-// })
+// 3.获取选中标签后的数据
+const currentGroup =computed(() => allCities.value[activeTab.value])
 
 
 </script>
 
 <style lang="less" scoped>
+.top{
+    position: relative;
+    z-index: 10;
+}
 .content{
     height: calc(100vh - 98px);
     overflow-y: auto;

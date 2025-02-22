@@ -1,10 +1,13 @@
 import { getCityAll } from '@/services'
 import { defineStore } from 'pinia'
 
-const useCityStore = defineStore('city', {
+const useCityStore = defineStore('cityStore', {
     state: () => {
         return{
-            allCities :{},
+            allCities :{ },
+            currentCity:{ 
+                cityName: '广州'
+             }
         }
     },
     actions:{
