@@ -16,5 +16,9 @@ body{
     z-index: 9;
     height: 100vh;
     background-color: #fff;
-    overflow: auto;
+    overflow-y: auto;
+}
+
+.bottom-gray-line{
+    border-bottom: 1px solid #f2f2f2;
 }
