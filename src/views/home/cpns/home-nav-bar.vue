@@ -1,7 +1,7 @@
 <template>
     <div class="home">  
       <div class="nav-bar">
-        <div class="title">困了么</div>
+        <div class="title">困了么旅行</div>
       </div>
     </div>
 </template>

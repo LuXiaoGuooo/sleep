@@ -1,8 +1,7 @@
 <template>
     <div class="app">
      <RouterView></RouterView>
-     <!-- <TabBar v-if="!route.meta.hideTabBar"></TabBar> -->
-      <TabBar></TabBar>
+     <TabBar v-if="!route.meta.hideTabBar"></TabBar>
     </div>
 </template>
 

@@ -47,6 +47,11 @@
                 <span class="tag">{{ item.tagText.text }}</span>
             </template>
            </div>
+
+           <!-- 5.开始搜索 -->
+            <div class="item search-btn" @click="searchBtnClick">
+                <div class="btn">开始搜索</div>
+            </div>
     </div>
 </template>
 
@@ -72,7 +77,7 @@ const clickPosition = () => {
         console.log("获取位置失败：", err)
     }, {
         enableHighAccuracy: true,
-        timeout: 5000,
+        timeout: 3000,
         maximumAge: 0,
     })
 }
@@ -105,6 +110,17 @@ const onConfirm = (value) => {
 const HomeStore = useHomeStore()
 const { hotSuggests } = storeToRefs(HomeStore)
 
+// 开始搜索
+const searchBtnClick = () => {
+    router.push({
+        path: '/search',
+        query: {
+            startDate: startDate.value,
+            endDate: endDate.value,
+            currentCity: currentCity.cityName.value
+        }
+    })
+}
 </script>
 
 <style lang="less" scoped>
@@ -162,6 +178,18 @@ const { hotSuggests } = storeToRefs(HomeStore)
     color: #3f4954;
     background-color: #f1f3f5;
   }
+}
+
+.search-btn{
+    .btn{
+        width: 342px;
+        height: 38px;
+        line-height: 38px;
+        text-align: center;
+        border-radius: 20px;
+        color: #fff;
+        background-color: var(--primary-color);
+    }
 }
 
 .item{

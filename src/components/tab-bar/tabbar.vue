@@ -1,5 +1,5 @@
 <template>
-   <div class="tab-bar">
+   <div class="tab-bar" >
    <van-tabbar v-model="currentIndex" active-color="#ff9645">
     <template v-for="(item, index) in tabbar">
       <van-tabbar-item  :to="item.path">
