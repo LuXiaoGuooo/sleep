@@ -5,6 +5,7 @@
         <img src="@/assets/img/home/banner.webp" alt="">
       </div>
       <HomeBoxSearch></HomeBoxSearch>
+      <HomeCateGories></HomeCateGories>
     </div>
 </template>
 
@@ -12,7 +13,7 @@
 import { ref } from 'vue'
 import HomeNavBar from './cpns/home-nav-bar.vue'
 import HomeBoxSearch from './cpns/home-box-search.vue'
-
+import HomeCateGories from './cpns/home-categories.vue'
 import useHomeStore from '@/stores/modules/home';
 
 
@@ -20,6 +21,7 @@ import useHomeStore from '@/stores/modules/home';
 // 发送网络请求
 const HomeStore = useHomeStore()
 HomeStore.fetchHotSuggestsDate()
+HomeStore.fetchCategoriesDate()
 
 // 1.热门建议
 // const hotSuggests = ref([])
