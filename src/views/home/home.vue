@@ -6,16 +6,19 @@
       </div>
       <HomeBoxSearch></HomeBoxSearch>
       <HomeCateGories></HomeCateGories>
+      <button @click="moveClick">刷新</button>
+      <HomeContent />
     </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+
 import HomeNavBar from './cpns/home-nav-bar.vue'
 import HomeBoxSearch from './cpns/home-box-search.vue'
 import HomeCateGories from './cpns/home-categories.vue'
-import useHomeStore from '@/stores/modules/home';
+import HomeContent from './cpns/home-content.vue'
 
+import useHomeStore from '@/stores/modules/home';
 
 
 // 发送网络请求
@@ -23,20 +26,13 @@ const HomeStore = useHomeStore()
 HomeStore.fetchHotSuggestsDate()
 HomeStore.fetchCategoriesDate()
 
-// 1.热门建议
-// const hotSuggests = ref([])
-// HYRequest.get({
-//   url:'/home/hotSuggests'
-// }).then(res => {
-//   hotSuggests.value = res.data
-// })
-// // 2.推荐建议
-// const categories = ref([])
-// HYRequest.get({
-//   url:'/home/categories'
-// }).then(res => {
-//   categories.value = res.data
-// })
+HomeStore.fetchHouselistDate()
+
+// 刷新
+const moveClick = () => {
+  console.log("一次刷新")
+  HomeStore.fetchHouselistDate()
+}
 </script>
 
 <style lang="less" scoped>
