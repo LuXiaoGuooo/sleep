@@ -1,17 +1,23 @@
 import { onMounted, onUnmounted,ref } from 'vue'
+import { throttle } from 'underscore'
 
 export default function useScroll(reachBottomCB){
     const isReachBootom = ref(false)
-    const scrollListernerHandler = () => {
-        const clientHeight = document.documentElement.clientHeight
-        const scrollTop = document.documentElement.scrollTop
-        const scrolHeiht = document.documentElement.scrollHeight
-        console.log(clientHeight, scrollTop, scrolHeiht)
-          if(clientHeight + scrollTop >= scrolHeiht){
-            console.log("滚动到底部了")
-            isReachBootom.value = true
-          }
+    const clientHeight = ref(0)
+    const scrollTop = ref(0)
+    const scrolHeiht = ref(0)
+
+    // 添加节流
+    const scrollListernerHandler = throttle(() => {
+      clientHeight.value = document.documentElement.clientHeight
+      scrollTop.value = document.documentElement.scrollTop
+      scrolHeiht.value = document.documentElement.scrollHeight
+
+        if(clientHeight.value + scrollTop.value >= scrolHeiht.value){
+          console.log("滚动到底部了")
+          isReachBootom.value = true
         }
+      }, 100)
   
       onMounted(() => {
         window.addEventListener('scroll', scrollListernerHandler)
@@ -21,7 +27,7 @@ export default function useScroll(reachBottomCB){
         window.removeEventListener('scroll', scrollListernerHandler)
      })  
 
-       return { isReachBootom }
+       return { isReachBootom, clientHeight, scrollTop, scrolHeiht }
     }
    
 

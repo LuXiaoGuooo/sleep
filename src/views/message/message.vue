@@ -1,6 +1,6 @@
 <template>
     <div class="message">
-        <h2>一起</h2>
+        <h2>打飞机</h2>
     </div>
 </template>
 

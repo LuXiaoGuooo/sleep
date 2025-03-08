@@ -1,6 +1,6 @@
 <template>
     <div class="order">
-        <h2>你想不想和我</h2>
+        <h2>喜欢</h2>
     </div>
 </template>
 
