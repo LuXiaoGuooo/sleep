@@ -1,10 +1,6 @@
 import axios from "axios";
 
 import { base_URL, TIMEOUT } from './config'
-// 1.添加发送网络请求显示loading的逻辑
-
-import useMainStore from "@/stores/modules/main";
-const mainStore = useMainStore()
 
 class HYRequest {
   
@@ -13,21 +9,7 @@ class HYRequest {
       baseURL,
       timeout
     });
-
-    this.instance.interceptors.request.use(config => {
-      mainStore.isloading = true
-      return config
-    }, err => {
-      return err
-    })
-    this.instance.interceptors.response.use(res => {
-      mainStore.isloading = false
-      return res
-    }, err => {
-      return err
-    })
   }
-
 
   // 发送请求的方法
   request(config) {
