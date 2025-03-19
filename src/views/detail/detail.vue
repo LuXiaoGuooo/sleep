@@ -2,11 +2,16 @@
     <div class="detail top-page" >
         <van-nav-bar
        title="房屋详情"
-      left-text="旅途"
-      left-arrow
-      @click-left="onClickLeft"
+       left-text="旅途"
+       left-arrow
+       @click-left="onClickLeft"
       />
+      <template v-if="mainPart">
         <Swipe :swipe-data="mainPart?.topModule?.housePicture?.housePics"></Swipe>
+        <Cpns :infosData="mainPart.topModule"></Cpns>
+        <Section :house-facility="mainPart.dynamicModule?.facilityModule?.houseFacility"></Section>
+        <Map :position="mainPart?.dynamicModule?.positionModule"></Map>
+      </template>
     </div>
 </template>
 
@@ -15,7 +20,11 @@ import { ref, computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router';
 import { getDatailInfos } from '@/services'
 
-import Swipe from './cpns/detail-swipe.vue'
+
+import Swipe from './cpns/detail_01-swipe.vue'
+import Cpns from './cpns/detail_02-infos.vue'
+import Section from './cpns/detail_03-section.vue'
+import Map from './cpns/detail_07-map.vue'
 
 const route = useRoute()
 const router = useRouter()

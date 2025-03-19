@@ -1,6 +1,6 @@
 <template>
     <div class="swipe">
-      <van-swipe class="swipe-list" :autoplay="3000" indicator-color="white">
+      <van-swipe class="swipe-list" :autoplay="2000" indicator-color="white">
         <template v-for="(item, index) in swipeData">
             <van-swipe-item class="item">
                 <img :src="item.url" alt="">
